@@ -1,7 +1,7 @@
 public class ShopRepository {
     private Product[] products = new Product[0];
 
-//    /**
+    //    /**
 //     * Вспомогательный метод для имитации добавления элемента в массив
 //     * @param current — массив, в который мы хотим добавить элемент
 //     * @param product — элемент, который мы хотим добавить
@@ -17,11 +17,14 @@ public class ShopRepository {
         return tmp;
     }
 
-//    /**
+    //    /**
 //     * Метод добавления товара в репозиторий
 //     * @param product — добавляемый товар
 //     */
     public void add(Product product) {
+        if (findById(product.getId()) != null) {
+            throw new AlreadyExistsException("Element with id: " + product.getId() + " already exists");
+        }
         products = addToArray(products, product);
     }
 
